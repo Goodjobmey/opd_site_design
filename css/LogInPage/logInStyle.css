@@ -1,0 +1,103 @@
+:root{
+    --white: #ffffff;
+    --differentwhite: #eaeaea;
+    --dirtyblue: #8ba0a4;
+    --dirtylightblue: #1b4552;
+    --dirtydarkblue: #183e4b;
+    --red: #d74a49;
+
+    --Text: FreeMono;
+}
+
+.LogInForm, .RegistrationComplete{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Form {
+    align-items: center;
+    width: 350px;
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 0 0px 20px #00000027;
+    font-family: FreeMono;
+    letter-spacing: 1px;
+    background-color: var(--pigpink);
+    backdrop-filter: blur(20px);
+}
+
+.FormMark{
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    color: #000000;
+    transition: 0.3s;
+}
+
+.FormButton,
+.FormReg{
+    justify-content: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    padding: 8px;
+    border-radius: 20px;
+}
+
+.FormButton:focus,
+.FormButton:hover{
+    background-color: rgba(0, 113, 240 0.7);
+}
+
+.FormButton{
+    background-color: #000000;
+    color:  #ffffff;
+}
+
+.FormReg{
+    margin-top: 15px;
+    border-bottom: none;
+    border: none;
+    background-color: transparent;
+    color: #000000;
+    outline: none;
+    text-decoration: none;
+}
+
+.FormTitle, .Error{
+    text-align: center;
+    margin: 0 0 32px 0;
+    font-weight: normal;
+    color: #000000;
+}
+
+.FormGroup{
+    position: relative;
+    margin-bottom: 32px;
+}
+
+.FormInput{
+    width: 100%;
+    padding: 0 0 0 10px 0;
+    border: none;
+    border-bottom: 1px solid #000000;
+    background-color: transparent;
+    outline: none;
+    transition: 0.3s;
+}
+
+.FormInput:focus{
+    border-bottom:  1px solid var(--dirtyblue);
+}
+
+.FormInput:focus ~ .FormMark,
+.FormInput:not(:placeholder-shown)~ .FormMark{
+    top: -18px;
+    font-size: 12px;
+    color: var(--dirtyblue);
+}
+
+

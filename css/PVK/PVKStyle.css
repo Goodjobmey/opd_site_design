@@ -1,0 +1,29 @@
+:root{
+    --white: #ffffff;
+    --differentwhite: #eaeaea;
+    --dirtyblue: #8ba0a4;
+    --dirtylightblue: #1b4552;
+    --dirtydarkblue: #183e4b;
+    --red: #d74a49;
+
+    --Text: FreeMono;
+}
+
+.profession{
+    display: block;
+    font-family: var(--Text) ;
+    color: #000000;
+    border: 15px #c29871;
+    border-radius: 30px;
+    border: 2px solid var(--dirtydarkblue); 
+    background: var(--differentwhite); 
+    font-size: 14px; 
+    padding: 5px 20px;
+    margin: 32px 32px 32px 32px;
+}
+
+.NameOfProfession{
+    text-align: center;
+    font-weight: normal;
+    color: #434341;
+}

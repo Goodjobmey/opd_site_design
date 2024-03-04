@@ -1,0 +1,53 @@
+:root{
+    --white: #ffffff;
+    --black: #000000;
+    --differentwhite: #eaeaea;
+    --dirtyblue: #8ba0a4;
+    --dirtylightblue: #1b4552;
+    --dirtydarkblue: #183e4b;
+    --red: #d74a49;
+    --brightblue: #43b0f1;
+    --skyblue: #b1cbfa;
+
+    --Text: FreeMono;
+}
+
+.MainMenu{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Form{
+    padding: 5px 20px;
+    display: block;
+    font-family: var(--Text) ;
+    color: #000000;
+    border-radius: 30px;
+    border: 2px solid var(--black); 
+    background: var(--differentwhite); 
+    font-size: 14px; 
+    padding: 5px 20px;
+    margin: 32px 32px 32px 32px;
+}
+
+.ChoosePage{
+    text-align: center;
+    padding: 5px 20px;
+    display: block;
+    font-family: var(--Text) ;
+    color: #000000;
+    border-radius: 30px;
+    border: 2px solid var(--black); 
+    background: var(--white); 
+    font-size: 14px; 
+    padding: 5px 20px;
+}
+
+.Sobaken{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 10px 10px 10px;
+}
