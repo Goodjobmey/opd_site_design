@@ -13,7 +13,6 @@
     display: block;
     font-family: var(--Text) ;
     color: #000000;
-    border: 15px #c29871;
     border-radius: 30px;
     border: 2px solid var(--dirtydarkblue); 
     background: var(--differentwhite); 
@@ -22,7 +21,7 @@
     margin: 32px 32px 32px 32px;
 }
 
-.NameOfProfession{
+.profession_name{
     text-align: center;
     font-weight: normal;
     color: #434341;

@@ -14,10 +14,11 @@
         <!-- ========== Start Stylesheet ========== -->
         <link rel="stylesheet" href="../css/stylesheet.css">
         <link rel="stylesheet" href="../css/LogInPage/logInStyle.css">
-        <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/navigation.css">
         <style>a{text-decoration: none;}</style>
         <!-- ========== End Stylesheet ========== -->
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <script src="../js/loginRedirect.js"></script>
    </head>
 
 
@@ -32,22 +33,22 @@
         <!-- Start Navigation -->
         <nav class="navigation">
 
-            <div class="Conteiner">
+            <div class="container">
 
 
-                <!-- Start Atribute Navigation -->
+                <!-- Start Attribute Navigation -->
                     <a href="/html/login.html">
-                        <buttom class="SignUpButton">ВОЙТИ</buttom>
+                        <button class="sign_up_button">ВОЙТИ</button>
                     </a>
-                <!-- End Atribute Navigation -->
+                <!-- End Attribute Navigation -->
 
 
-                <!-- Sart collection in nav -->
-                <div class="Navbar" >
-                    <ul class="NavbarMenu">
-                        <li><a class="NavbarItem" href="/html/main.html">Главная</a></li>
-                        <li><a class="NavbarItem" href="/html/pvk.html">ПВК</a></li>
-                        <li><a class="NavbarItem" href="#">Тесты</a></li>
+                <!-- Start collection in nav -->
+                <div class="navbar" >
+                    <ul class="navbar_menu">
+                        <li><a class="navbar_item" href="/html/main.html">Главная</a></li>
+                        <li><a class="navbar_item" href="/html/pvk.html">ПВК</a></li>
+                        <li><a class="navbar_item" href="#">Тесты</a></li>
                     </ul>
                 </div>
 
@@ -63,26 +64,26 @@
 
     <!--Login Form 
         ============================================= -->
-        <div class="LogInForm">
+        <div class="login_form">
 
-            <form class="Form">
-                <h1 class="FormTitle"><b>ВХОД</b></h1>
+            <form class="form">
+                <h1 class="form_title"><b>ВХОД</b></h1>
     
-                <div class="FormGroup">
-                    <input id="email" type="email" class="FormInput" placeholder="">
-                    <label class="FormMark">Email</label>
+                <div class="form_group">
+                    <input id="email" type="email" class="form_input" placeholder="">
+                    <label class="form_mark">Email</label>
                 </div>
     
-                <div class="FormGroup">
-                    <input id="password" type="text" class="FormInput" placeholder="" th:field="*{password}">
-                    <label class="FormMark">Пароль</label>
+                <div class="form_group">
+                    <input id="password" type="text" class="form_input" placeholder="" th:field="*{password}">
+                    <label class="form_mark">Пароль</label>
                 </div>
 
                 <a href="#">
-                    <buttom class="FormButton" type='submit' value='Войти' th:value="Войти" >ВОЙТИ</buttom>
+                    <button class="form_button" type='submit' value='Войти' th:value="Войти" >ВОЙТИ</button>
                 </a>
                 <a href="register.html">
-                    <buttom class="FormReg" type='submit' value='Зарегистрироваться' th:value="Зарегистрироваться" >У вас ещё нет аккаунта?</buttom>
+                    <button class="form_reg" type='submit' value='Зарегистрироваться' th:value="Зарегистрироваться" onclick="redirect()">У вас ещё нет аккаунта?</button>
                 </a>
             
             </form>

@@ -9,26 +9,26 @@
     --Text: FreeMono;
 }
 
-.LogInForm, .RegistrationComplete{
+.login_form, .registration_complete{
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.Form {
+.form {
     align-items: center;
     width: 350px;
     padding: 32px;
     border-radius: 10px;
     box-shadow: 0 0px 20px #00000027;
-    font-family: FreeMono;
+    font-family: var(--Text);
     letter-spacing: 1px;
-    background-color: var(--pigpink);
+    background-color: var(--white);
     backdrop-filter: blur(20px);
 }
 
-.FormMark{
+.form_mark{
     position: absolute;
     top: 0;
     z-index: -1;
@@ -36,8 +36,8 @@
     transition: 0.3s;
 }
 
-.FormButton,
-.FormReg{
+.form_button,
+.form_reg{
     justify-content: center;
     border: none;
     outline: none;
@@ -47,41 +47,40 @@
     border-radius: 20px;
 }
 
-.FormButton:focus,
-.FormButton:hover{
-    background-color: rgba(0, 113, 240 0.7);
+.form_button:focus,
+.form_button:hover{
+    background-color: rgba(0, 113, 240, 0.7);
 }
 
-.FormButton{
+.form_button{
     background-color: #000000;
     color:  #ffffff;
 }
 
-.FormReg{
+.form_reg{
     margin-top: 15px;
-    border-bottom: none;
-    border: none;
+    border-style: none;
     background-color: transparent;
     color: #000000;
     outline: none;
     text-decoration: none;
 }
 
-.FormTitle, .Error{
+.form_title, .Error{
     text-align: center;
     margin: 0 0 32px 0;
     font-weight: normal;
     color: #000000;
 }
 
-.FormGroup{
+.form_group{
     position: relative;
     margin-bottom: 32px;
 }
 
-.FormInput{
+.form_input{
     width: 100%;
-    padding: 0 0 0 10px 0;
+    padding: 0 0 0 10px;
     border: none;
     border-bottom: 1px solid #000000;
     background-color: transparent;
@@ -89,12 +88,12 @@
     transition: 0.3s;
 }
 
-.FormInput:focus{
+.form_input:focus{
     border-bottom:  1px solid var(--dirtyblue);
 }
 
-.FormInput:focus ~ .FormMark,
-.FormInput:not(:placeholder-shown)~ .FormMark{
+.form_input:focus ~ .form_mark,
+.form_input:not(:placeholder-shown)~ .form_mark{
     top: -18px;
     font-size: 12px;
     color: var(--dirtyblue);

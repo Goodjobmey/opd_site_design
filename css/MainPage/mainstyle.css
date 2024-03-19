@@ -12,14 +12,14 @@
     --Text: FreeMono;
 }
 
-.MainMenu{
+.main_menu{
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.Form{
+.form{
     padding: 5px 20px;
     display: block;
     font-family: var(--Text) ;
@@ -27,12 +27,11 @@
     border-radius: 30px;
     border: 2px solid var(--black); 
     background: var(--differentwhite); 
-    font-size: 14px; 
-    padding: 5px 20px;
+    font-size: 14px;
     margin: 32px 32px 32px 32px;
 }
 
-.ChoosePage{
+.choose_page{
     text-align: center;
     padding: 5px 20px;
     display: block;
@@ -41,11 +40,10 @@
     border-radius: 30px;
     border: 2px solid var(--black); 
     background: var(--white); 
-    font-size: 14px; 
-    padding: 5px 20px;
+    font-size: 14px;
 }
 
-.Sobaken{
+.dog{
     display: flex;
     margin-left: auto;
     margin-right: auto;
