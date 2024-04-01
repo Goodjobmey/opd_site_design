@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reaction Test</title>
+<style>
+    body {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+    }
+    
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body onclick="checkReaction()">
+
+<button onclick="startTest()">Start Test</button>
+
+<script>
+    var interval;
+    var startTime;
+    var elapsedTime = 0;
+    var reactionTime;
+
+    function startTest() {
+        startTime = new Date().getTime();
+        interval = setInterval(changeBackground, 1000); // изменение цвета фона каждую секунду
+    }
+
+    function changeBackground() {
+        var currentTime = new Date().getTime();
+        elapsedTime = Math.floor((currentTime - startTime) / 1000); // вычисление прошедшего времени в секундах
+        if (elapsedTime >= 30) { // если прошло 30 секунд
+            clearInterval(interval); // остановить изменение фона
+            document.body.style.backgroundColor = 'black'; // сбросить фон на черный
+        } else {
+            var randomColor = getRandomColor();
+            document.body.style.backgroundColor = randomColor;
+        }
+    }
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    function checkReaction() {
+        if (elapsedTime > 0) {
+            reactionTime = new Date().getTime() - startTime;
+            alert("Your reaction time: " + reactionTime + " milliseconds");
+            clearInterval(interval);
+            elapsedTime = 0;
+            document.body.style.backgroundColor = 'black'; // РЕСэт background Колор
+        }
+    }
+</script>
+
+</body>
+</html>
