@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sound Reaction Test</title>
+<style>
+    body {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+    }
+    
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<button id="startButton">Start Test</button>
+<audio id="sound" src="./sound/1-door-bell.mp3"></audio>  <!-- ИСПРАВЬ ПУТЬ ПЖ ПАП -->
+
+<script>
+    var startTime;
+    var reactionTime;
+    var soundPlayed = false;
+
+    document.getElementById('startButton').addEventListener('click', function() {
+        this.disabled = true; // Отключить кнопку после запуска
+        // Задержка перед воспроизведением звука
+        var delay = Math.random() * 2000 + 1000; // 1-3 секунды
+        setTimeout(playSound, delay);
+    });
+
+    document.body.addEventListener('click', function() {
+        if (soundPlayed) {
+            checkReaction();
+        }
+    });
+
+    function playSound() {
+        document.getElementById('sound').play();
+        startTime = new Date().getTime();
+        soundPlayed = true;
+    }
+
+    function checkReaction() {
+        if (!startTime) return; // Игнорируем, если звук ещё не воспроизведён
+        reactionTime = new Date().getTime() - startTime;
+        alert("Your reaction time: " + reactionTime + " milliseconds");
+        soundPlayed = false;
+        document.getElementById('startButton').disabled = false; // Включить кнопку после завершения теста
+    }
+</script>
+
+</body>
+</html>
