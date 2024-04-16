@@ -1,113 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Quiz</title>
+    <title>Математический тест</title>
+    
+    <!-- ========== Start Stylesheet ========== -->
+    <link rel="stylesheet" href="../css/reactions_css/math_test.css">
+    <link rel="stylesheet" href="../css/stylesheet.css">
+    <link rel="stylesheet" href="../css/LogInPage/logInStyle.css">
+    <link rel="stylesheet" href="../css/navigation.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        a {
+            text-decoration: none;
+        }
+        .main_form {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 50px;
         }
-        .question {
-            margin: 20px 0;
-        }
-        button {
+        .form_button {
             margin-top: 20px;
             padding: 10px;
             font-size: 16px;
             cursor: pointer;
         }
+        .question {
+            margin: 20px 0;
+            text-align: center;
+        }
         .timer {
             margin-bottom: 20px;
+            text-align: center;
         }
     </style>
+    <!-- ========== End Stylesheet ========== -->
+
 </head>
 <body>
 
-<div id="quiz-container"></div>
-<button onclick="startQuiz()">Start Quiz</button>
-<div class="timer" id="timer"></div>
+    <!--Header
+    ============================================= -->
+    <header>
 
-<script>
-    const questions = [
-        { question: "5 + 3", answers: [8, 7, 9], correct: 8 },
-        { question: "10 - 7", answers: [5, 3, 2], correct: 3 },
-        { question: "3 * 4", answers: [12, 7, 9], correct: 12 },
-        { question: "15 / 3", answers: [5, 6, 4], correct: 5 },
-        { question: "9 + 6", answers: [14, 15, 16], correct: 15 }
-    ];
-    let currentQuestionIndex = 0;
-    let timer;
-    let score = 0;
+        <!-- Start Navigation -->
+        <nav class="navigation">
+            <div class="container">
+                <!-- Start Attribute Navigation -->
+                <a href="/html/login.html">
+                    <button class="sign_up_button">Войти</button>
+                </a>
+                <!-- End Attribute Navigation -->
 
-    function startQuiz() {
-        document.querySelector('button').disabled = true; // Disable the start button
-        displayQuestion();
-        startTimer(30); // Start the timer for the first question
-    }
+                <!-- Start collection in nav -->
+                <div class="navbar" >
+                    <ul class="navbar_menu">
+                        <li><a class="navbar_item" href="/html/main.html">Главная</a></li>
+                        <li><a class="navbar_item" href="/html/pvk.html">ПВК</a></li>
+                        <li><a class="navbar_item" href="#">Тесты</a></li>
+                    </ul>
+                </div>
+                <!-- выдает ошибку во флоат? -->
+                <img class="Logo" src="../image/logoITMO.png" alt="itmo_logo" width="100px" float: left>
+            </div>
+        </nav>
+        <!-- End Navigation -->
 
-    function displayQuestion() {
-        const quizContainer = document.getElementById('quiz-container');
-        quizContainer.innerHTML = ''; // Clear previous question
+    </header>
+    <!-- End Header -->
 
-        if (currentQuestionIndex >= questions.length) {
-            quizContainer.innerHTML = `<p>Your score is ${score} out of ${questions.length}</p>`;
-            document.getElementById('timer').textContent = '';
-            return;
+    <div class="main_form">
+        <div id="quiz-container"></div>
+        <button class="form_button" id="startButton" onclick="startQuiz()">Начать тест</button>
+        <div class="timer" id="timer"></div>
+    </div>
+
+    <!--Footer
+    ============================================= -->
+    <footer>
+        <p>Разработано в рамках курса "Основы профессиональной деятельности"</p>
+        <p>Университет ИТМО, весна 2024</p>
+    </footer>
+    <!-- End Footer -->
+
+    <script>
+
+    const audio = [
+    new Audio('./sound/53.mp3'),
+    new Audio('./sound/107.mp3'),
+    new Audio('./sound/34.mp3'),
+    new Audio('./sound/153.mp3'),
+    new Audio('./sound/96.mp3')
+];
+
+        const questions = [
+            { question: " ", answers: ['ЧЕТ', 'НЕЧЕТ'], correct: 'ЧЕТ' },
+            { question: " ", answers: ['ЧЕТ', 'НЕЧЕТ'], correct: 'НЕЧЕТ' },
+            { question: " ", answers: ['ЧЕТ', 'НЕЧЕТ'], correct: 'ЧЕТ' },
+            { question: " ", answers: ['ЧЕТ', 'НЕЧЕТ'], correct: 'НЕЧЕТ' },
+            { question: " ", answers: ['ЧЕТ', 'НЕЧЕТ'], correct: 'НЕЧЕТ' }
+        ];
+        let currentQuestionIndex = 0;
+        let timer;
+        let score = 0;
+
+        function startQuiz() {
+            document.getElementById('startButton').style.display = 'none'; // Hide the start button
+            displayQuestion();
+            startTimer(30); // Start the timer for the first question
         }
 
-        const q = questions[currentQuestionIndex];
-        const questionEl = document.createElement('div');
-        questionEl.classList.add('question');
-        questionEl.innerHTML = `<p>${q.question}</p>`;
+        function displayQuestion() {
+    const quizContainer = document.getElementById('quiz-container');
+    quizContainer.innerHTML = ''; // Clear previous question
 
-        q.answers.forEach(answer => {
-            const button = document.createElement('button');
-            button.textContent = answer;
-            button.onclick = () => checkAnswer(answer);
-            questionEl.appendChild(button);
-        });
-
-        quizContainer.appendChild(questionEl);
+    if (currentQuestionIndex >= questions.length) {
+        quizContainer.innerHTML = `<p>Ваш счет ${score} из ${questions.length}</p>`;
+        document.getElementById('timer').textContent = '';
+        return;
     }
 
-    function checkAnswer(answer) {
-        if (answer === questions[currentQuestionIndex].correct) {
-            score++;
+    const q = questions[currentQuestionIndex];
+    audio[currentQuestionIndex].play(); // Play audio for current question
+
+            const questionEl = document.createElement('div');
+            questionEl.classList.add('question');
+            questionEl.innerHTML = `<p>${q.question}</p>`;
+
+            q.answers.forEach(answer => {
+                const button = document.createElement('button');
+                button.textContent = answer;
+                button.onclick = () => checkAnswer(answer);
+                questionEl.appendChild(button);
+            });
+
+            quizContainer.appendChild(questionEl);
         }
-        currentQuestionIndex++;
-        displayQuestion();
-        resetTimer();
-    }
 
-    function startTimer(seconds) {
-        const timerEl = document.getElementById('timer');
-        let timeRemaining = seconds;
-        timerEl.textContent = `Time remaining: ${timeRemaining}s`;
-
-        timer = setInterval(() => {
-            timeRemaining--;
-            timerEl.textContent = `Time remaining: ${timeRemaining}s`;
-            if (timeRemaining <= 0) {
-                clearInterval(timer);
-                currentQuestionIndex++;
-                displayQuestion();
-                resetTimer();
+        function checkAnswer(answer) {
+            if (answer === questions[currentQuestionIndex].correct) {
+                score++;
             }
-        }, 1000);
-    }
-
-    function resetTimer() {
-        clearInterval(timer);
-        if (currentQuestionIndex < questions.length) {
-            startTimer(30);
+            currentQuestionIndex++;
+            displayQuestion();
+            resetTimer();
         }
-    }
-</script>
+
+        function startTimer(seconds) {
+            const timerEl = document.getElementById('timer');
+            let timeRemaining = seconds;
+            timerEl.textContent = `Осталось времени: ${timeRemaining} сек`;
+
+            timer = setInterval(() => {
+                timeRemaining--;
+                timerEl.textContent = `Осталось времени: ${timeRemaining} сек`;
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
+                    currentQuestionIndex++;
+                    displayQuestion();
+                    resetTimer();
+                }
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            if (currentQuestionIndex < questions.length) {
+                startTimer(30);
+            }
+        }
+    </script>
 
 </body>
 </html>

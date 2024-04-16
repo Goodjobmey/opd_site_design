@@ -4,27 +4,46 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sound Reaction Test</title>
-<style>
-    body {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #f0f0f0;
-    }
-    
-    button {
-        padding: 10px 20px;
-        font-size: 18px;
-        cursor: pointer;
-    }
-</style>
+
+<!-- ========== Start Stylesheet ========== -->
+<link rel="stylesheet" href="../css/reactions_css/math_test.css">
+<link rel="stylesheet" href="../css/stylesheet.css">
+<link rel="stylesheet" href="../css/LogInPage/logInStyle.css">
+<link rel="stylesheet" href="../css/navigation.css">
+<style>a{text-decoration: none;}</style>
+<!-- ========== End Stylesheet ========== -->
+
 </head>
 <body>
 
+    <!--Header ============================================= -->
+    <header>
+        <!-- Start Navigation -->
+        <nav class="navigation">
+            <div class="container">
+                <!-- Start Attribute Navigation -->
+                <a href="/html/login.html">
+                    <button class="sign_up_button">ВОЙТИ</button>
+                </a>
+                <!-- End Attribute Navigation -->
+                <!-- Start collection in nav -->
+                <div class="navbar">
+                    <ul class="navbar_menu">
+                        <li><a class="navbar_item" href="/html/main.html">Главная</a></li>
+                        <li><a class="navbar_item" href="/html/pvk.html">ПВК</a></li>
+                        <li><a class="navbar_item" href="#">Тесты</a></li>
+                    </ul>
+                </div>
+                <!-- выдает ошибку во флоат? -->
+                <img class="Logo" src="../image/logoITMO.png" alt="itmo_logo" width="100px" float: left>
+            </div>
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Header -->
+
 <button id="startButton">Start Test</button>
-<audio id="sound" src="./sound/1-door-bell.mp3"></audio>  <!-- ИСПРАВЬ ПУТЬ ПЖ ПАП -->
+<audio id="sound" src="sound/1-door-bell.mp3"></audio>
 
 <script>
     var startTime;
