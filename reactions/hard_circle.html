@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Тест на реакцию</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .circle {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .circle1 {
+            top: 20%;
+            left: 30%;
+            border-color: #007bff;
+            background-color: #b0c4de;
+        }
+
+        .circle2 {
+            top: 70%;
+            left: 40%;
+            transform: translateX(-50%);
+            border-color: #28a745;
+            background-color: #98fb98;
+        }
+
+        .circle3 {
+            top: 70%;
+            right: 10%;
+            border-color: #ffc107;
+            background-color: #ffd700;
+        }
+
+        /* Добавленные кружки */
+        .circle4 {
+            bottom: 50%;
+            left: 10%;
+            border-color: #dc3545;
+            background-color: #ff6f61;
+        }
+
+        .circle5 {
+            bottom: 40%;
+            right: 30%;
+            border-color: #6c757d;
+            background-color: #ced4da;
+        }
+
+        .circle6 {
+            top: 20%;
+            right: 30%;
+            border-color: #17a2b8;
+            background-color: #a2d9e4;
+        }
+
+        .spinner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: black;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translate(45px) rotate(0deg);
+            transform-origin: -45px center;
+        }
+
+        .target {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translate(50px, 0);
+        }
+
+        .timer {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="timer" id="timer">00:00</div>
+    <div class="container">
+        <div class="circle circle1">
+            <div class="spinner" id="spinner1"></div>
+            <div class="target" id="target1"></div>
+        </div>
+        <div class="circle circle2">
+            <div class="spinner" id="spinner2"></div>
+            <div class="target" id="target2"></div>
+        </div>
+        <div class="circle circle3">
+            <div class="spinner" id="spinner3"></div>
+            <div class="target" id="target3"></div>
+        </div>
+        <div class="circle circle4">
+            <div class="spinner" id="spinner4"></div>
+            <div class="target" id="target4"></div>
+        </div>
+        <div class="circle circle5">
+            <div class="spinner" id="spinner5"></div>
+            <div class="target" id="target5"></div>
+        </div>
+        <div class="circle circle6">
+            <div class="spinner" id="spinner6"></div>
+            <div class="target" id="target6"></div>
+        </div>
+    </div>
+    <button id="start">Начать тест</button>
+    <button id="click">Тык!</button>
+    <script>
+        var startButton = document.getElementById("start");
+        var clickButton = document.getElementById("click");
+        var spinners = [document.getElementById("spinner1"), document.getElementById("spinner2"), document.getElementById("spinner3"), document.getElementById("spinner4"), document.getElementById("spinner5"), document.getElementById("spinner6")];
+        var targets = [document.getElementById("target1"), document.getElementById("target2"), document.getElementById("target3"), document.getElementById("target4"), document.getElementById("target5"), document.getElementById("target6")];
+        var activeIndex = 0;
+        var angles = [0, 0, 0, 0, 0, 0];
+        var interval;
+        var rotationSpeed = 6; // Скорость вращения
+        var timerElement = document.getElementById("timer");
+        var totalSeconds = 60; // Общее время теста в секундах
+        var startTime, endTime; // Переменные для хранения времени начала и окончания попытки
+
+        function startTest() {
+            startButton.disabled = true;
+            clickButton.disabled = false;
+            interval = setInterval(rotateSpinners, 20);
+            updateTimer(totalSeconds);
+            startTime = new Date().getTime(); // Начало попытки
+        }
+
+        function rotateSpinners() {
+            angles = angles.map(angle => angle + rotationSpeed);
+            for (var i = 0; i < spinners.length; i++) {
+                spinners[i].style.transform = `translate(-50%, -50%) translate(50px) rotate(${angles[i]}deg)`;
+            }
+        }
+
+        function checkReaction() {
+            clearInterval(interval);
+            clickButton.disabled = true;
+
+            endTime = new Date().getTime(); // Конец попытки
+
+            var spinnerPosition = spinners[activeIndex].getBoundingClientRect();
+            var targetPosition = targets[activeIndex].getBoundingClientRect();
+
+            var distance = Math.abs(spinnerPosition.left - targetPosition.left) +
+                           Math.abs(spinnerPosition.top - targetPosition.top);
+
+            var reactionTime = endTime - startTime; // Время попытки
+
+            if (distance < 20) {
+                alert(`Успех! Попадание в назначенную область.\nВремя затраченное на попытку: ${reactionTime} мс`);
+            } else {
+                alert(`Промах! Не попал в назначенную область.\nВремя затраченное на попытку: ${reactionTime} мс`);
+            }
+
+            activeIndex = (activeIndex + 1) % spinners.length;
+            startButton.disabled = false;
+            clickButton.disabled = true;
+        }
+
+        function updateTimer(seconds) {
+            var minutes = Math.floor(seconds / 60);
+            var remainingSeconds = seconds % 60;
+            timerElement.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+            
+            if (seconds > 0) {
+                setTimeout(() => updateTimer(seconds - 1), 1000);
+            } else {
+                clearInterval(interval);
+                clickButton.disabled = true;
+                alert("Время вышло!");
+            }
+        }
+
+        startButton.addEventListener("click", startTest);
+        clickButton.addEventListener("click", checkReaction);
+    </script>
+</body>
+
+</html>
